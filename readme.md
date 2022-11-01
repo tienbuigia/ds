@@ -9,9 +9,13 @@
 
 ## the team
 
-| name | description |
+| name | email |
 | --- | --- |
 | Bui Gia Tien | tien.bg187345@sis.hust.edu.vn |
+| Ninh Minh Dong | dong.nm187306@sis.hust.edu.vn |
+| Nguyen Tuan Anh | anh.nt176076@sis.hust.edu.vn |
+| Le Thi Hong | hong.lt198302@sis.hust.edu.vn |
+| Ngo Thi Linh | linh.nt187179@sis.hust.edu.vn |
 
 ## license
 
