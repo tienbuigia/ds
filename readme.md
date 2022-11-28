@@ -22,7 +22,10 @@
 
 ## todo
 
+- [ ] drink water!
 - [x] choose the topic!
+- [ ] make the game.
+- [ ] implement the server.
 
 ## the team
 
