@@ -1,11 +1,28 @@
-# DISTRIBUTED SYSTEM
+# MULTIPLAYER PONG
 
 ## how to deploy
 
+1. Create virtual environment (optional)
+
+    ```python
+    python -m venv venv
+    ```
+
+2. Install requirements
+
+    ```python
+    pip install -r requirements.txt
+    ```
+
+3. Running the game
+    1. run the server
+        - [ ] TODO
+    2. run client
+        - [ ] TODO
+
 ## todo
 
-- [ ] learn docker?
-- [ ] choose the topic!
+- [x] choose the topic!
 
 ## the team
 
