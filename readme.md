@@ -22,9 +22,12 @@
 
 ## todo
 
-- [ ] drink water!
+- [o] drink water!
 - [x] choose the topic!
-- [ ] make the game.
+- [o] make the game.
+  - [x] base code: blank window.
+  - [ ] class Player.
+  - [ ] class Ball.
 - [ ] implement the server.
 
 ## the team
