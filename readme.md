@@ -16,19 +16,22 @@
 
 3. Running the game
     1. run the server
-        - [ ] TODO
+        ```python server.py```
     2. run client
-        - [ ] TODO
+        ```python client.py```
 
 ## todo
 
 - [o] drink water!
 - [x] choose the topic!
-- [o] make the game.
+- [x] make the game.
   - [x] base code: blank window.
-  - [ ] class Player.
-  - [ ] class Ball.
+  - [x] class Player.
+  - [x] class Ball.
+  - [x] handle collision.
+  - [x] class Score
 - [ ] implement the server.
+  - [ ] create class Network.
 
 ## the team
 
