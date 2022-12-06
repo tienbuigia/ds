@@ -46,3 +46,16 @@ class Score:
             self.left_score += 1
         else:
             self.right_score += 1
+
+    def reset(self):
+        self.left_score = 0
+        self.right_score = 0
+
+    def draw(self, win):
+
+        left_score_text = FONT.render(f"{self.left_score}", 1, color.WHITE)
+        right_score_text = FONT.render(f"{self.right_score}", 1, color.WHITE)
+        win.blit(left_score_text,
+                 (WIDTH // 4 - left_score_text.get_width() // 2, 20))
+        win.blit(right_score_text,
+                 (WIDTH * (3 / 4) - right_score_text.get_width() // 2, 20))
