@@ -16,13 +16,15 @@
 
 3. Running the game
     1. run the server
-        - [ ] TODO
+        `python server`
     2. run client
-        - [ ] TODO
+        `python client`
 
 ## todo
 
 - [x] choose the topic!
+- [x] implement the game.
+- [ ] implement client-server using socket
 
 ## the team
 
