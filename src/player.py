@@ -11,3 +11,10 @@ class Player:
         self.color = color
         self.rect = (x, y, width, height)
         self.vel = 4
+    
+    def reset(self):
+        self.x = self.original_x
+        self.y = self.original_y
+
+    def update(self):
+        self.rect = (self.x, self.y, self.width, self.height)
