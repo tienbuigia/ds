@@ -33,3 +33,16 @@ def handle_collision(ball, left_paddle, right_paddle):
                 reduction_factor = (right_paddle.height / 2) / ball.MAX_VEL
                 y_vel = difference_in_y / reduction_factor
                 ball.y_vel = -1 * y_vel
+
+
+class Score:
+
+    def __init__(self):
+        self.left_score = 0
+        self.right_score = 0
+
+    def score(self, player='left'):
+        if player == "left":
+            self.left_score += 1
+        else:
+            self.right_score += 1
