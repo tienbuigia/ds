@@ -18,6 +18,45 @@ except socket.error as e:
 s.listen(2)
 print("waiting for connection...")
 
+
+players = [
+    Player(0, HEIGHT / 2 - 50, 20, 100, (0, 255, 0)),
+    Player(WIDTH - 20, HEIGHT / 2 - 50, 20, 100, (0, 0, 255))
+]
+ball = Ball(WIDTH / 2 - BALL_RADIUS, HEIGHT / 2 - BALL_RADIUS, BALL_RADIUS)
+score = Score()
+
+
+def threaded_client(conn, player):
+    conn.send(pickle.dumps(players[player]))
+    reply = ""
+    while True:
+        try:
+            data = pickle.loads(conn.recv(4096))
+            players[player] = data
+            if not data:
+                print("disconnected")
+                break
+            else:
+                if player == 1:
+                    reply = players[0]
+                else:
+                    reply = players[1]
+
+            # conn.sendall(pickle.dumps((reply, (ball.x, ball.y))))
+            conn.sendall(pickle.dumps((
+                reply,
+                ball,
+                score,
+            )))
+        except:
+            break
+    print("Lost connection")
+    conn.close()
+
+
+clock = pygame.time.Clock()
+
 currentPlayer = 0
 countPlayer = 0
 while True:
