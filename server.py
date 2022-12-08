@@ -1,5 +1,12 @@
 import socket
+import pickle
 import sys
+import pygame
+from _thread import start_new_thread
+from src.player import Player
+from src.ball import Ball
+from src import game
+from src.game import Score
 
 WIDTH, HEIGHT = 700, 500
 WINNING_SCORE = 5
@@ -54,8 +61,9 @@ def threaded_client(conn, player):
     print("Lost connection")
     conn.close()
 
-
 clock = pygame.time.Clock()
+
+#def move_ball(ball):
 
 currentPlayer = 0
 countPlayer = 0
@@ -63,5 +71,10 @@ while True:
     conn, addr = s.accept()
     countPlayer += 1
     print("connected to", addr)
-
+    
+    start_new_thread(threaded_client, (conn, currentPlayer))
+    if countPlayer == 2:
+        start_new_thread(move_ball, (ball, ))
+    currentPlayer += 1
+    
 sys.exit(0)
