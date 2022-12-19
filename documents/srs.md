@@ -19,4 +19,6 @@ cố gắng ngăn chặn "bóng" bay qua tng thành của mình.
 
 ### bieu do UC
 
+![Use case diagram](UC.jpg)
+
 ### dac ta UC
