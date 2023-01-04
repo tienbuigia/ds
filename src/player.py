@@ -11,7 +11,10 @@ class Player:
         self.color = color
         self.rect = (x, y, width, height)
         self.vel = 4
-    
+
+    def draw(self, win):
+        pygame.draw.rect(win, self.color, self.rect)
+
     def reset(self):
         self.x = self.original_x
         self.y = self.original_y
