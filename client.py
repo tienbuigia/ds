@@ -35,19 +35,25 @@ def draw(win, players, ball, score):
 
     ball.draw(win)
     pygame.display.update()
-    
+
 def main():
+    pygame.init()
     run = True
+    n = Network()
+    player = n.get_player()
     clock = pygame.time.Clock()
 
     while run:
         clock.tick(FPS)
-        draw(WIN)
+        player2, ball, score = n.send(player)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-                break
+                pygame.quit()
+
+        player.move()
+        draw(WIN, [player, player2], ball, score)
 
     pygame.quit()
 
