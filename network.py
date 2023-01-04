@@ -1,4 +1,3 @@
-
 import socket
 import pickle
 
@@ -18,7 +17,8 @@ class Network:
 
 
     def connect(self):
-        pass
+        self.client.connect(self.addr)
+        return pikle.loads(self.client.recv(2048 * 2))
 
 
     def send(self, data):
