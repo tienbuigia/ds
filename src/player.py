@@ -15,6 +15,15 @@ class Player:
     def draw(self, win):
         pygame.draw.rect(win, self.color, self.rect)
 
+    def move(self):
+        keys = pygame.key.get_pressed()
+
+        if keys[pygame.K_UP] and self.y - self.vel >= 0:
+            self.y -= self.vel
+        if keys[pygame.K_DOWN] and self.y + self.height < 500:
+            self.y += self.vel
+        self.update()
+
     def reset(self):
         self.x = self.original_x
         self.y = self.original_y
