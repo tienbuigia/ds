@@ -63,7 +63,25 @@ def threaded_client(conn, player):
 
 clock = pygame.time.Clock()
 
-#def move_ball(ball):
+def move_ball(ball):
+    while True:
+        try:
+            clock.tick(60)
+            ball.move()
+
+            game.handle_collision(ball, players[0], players[1])
+            # print("recieved:", data)
+            # print("sending:", reply)
+
+            if ball.x < 0:
+                score.score('right')
+                ball.reset()
+            elif ball.x > WIDTH:
+                score.score('left')
+                ball.reset()
+
+        except:
+            break
 
 currentPlayer = 0
 countPlayer = 0
