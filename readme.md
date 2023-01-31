@@ -30,8 +30,7 @@
   - [x] class Ball.
   - [x] handle collision.
   - [x] class Score
-- [ ] implement the server.
-  - [ ] create class Network.
+- [x] implement the server.
 
 ## the team
 
