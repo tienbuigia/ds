@@ -1,5 +1,5 @@
 import pygame
-from src.constant import *
+from src.constant import WIDTH, HEIGHT, FPS
 
 from network import Network
 from src import color
@@ -27,9 +27,8 @@ def draw(win, players, ball, score):
     for i in range(10, HEIGHT, HEIGHT // 20):
         if i % 2 == 1:
             continue
-        pygame.draw.rect(
-            win, color.WHITE, (WIDTH // 2 - 5, i, 10, HEIGHT // 20)
-        )
+        pygame.draw.rect(win, color.WHITE,
+                         (WIDTH // 2 - 5, i, 10, HEIGHT // 20))
 
     ball.draw(win)
     pygame.display.update()

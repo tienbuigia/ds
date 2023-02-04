@@ -8,7 +8,7 @@ from src.player import Player
 from src.ball import Ball
 from src import game
 from src.game import Score
-from src.constant import *
+from src.constant import HEIGHT, WIDTH, BALL_RADIUS, WINNING_SCORE
 
 server = 'localhost'
 port = 5555
@@ -22,7 +22,6 @@ except socket.error as e:
 
 s.listen(2)
 print('waiting for connection...')
-
 
 players = [
     Player(0, HEIGHT / 2 - 50, 20, 100, (0, 255, 0)),
@@ -49,16 +48,13 @@ def threaded_client(conn, player):
                     reply = players[1]
 
             # conn.sendall(pickle.dumps((reply, (ball.x, ball.y))))
-            conn.sendall(
-                pickle.dumps(
-                    (
-                        reply,
-                        ball,
-                        score,
-                    )
-                )
-            )
-        except:
+            conn.sendall(pickle.dumps((
+                reply,
+                ball,
+                score,
+            )))
+        except Exception as e:
+            print(e)
             break
     print('Lost connection')
     conn.close()
@@ -97,7 +93,8 @@ def move_ball(ball):
                 ball.reset()
                 # ball.READY = False
 
-        except:
+        except Exception as e:
+            print(e)
             break
 
 
@@ -110,7 +107,7 @@ while True:
 
     start_new_thread(threaded_client, (conn, currentPlayer))
     if countPlayer == 2:
-        move_ball_id = start_new_thread(move_ball, (ball,))
+        move_ball_id = start_new_thread(move_ball, (ball, ))
     currentPlayer += 1
 
 sys.exit(0)
