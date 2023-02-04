@@ -9,6 +9,7 @@ pygame.init()
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('multiplayer pong')
 
+FONT = pygame.font.SysFont('monospace', 50)
 
 # def draw(win):
 #    win.fill(color.BLACK)
