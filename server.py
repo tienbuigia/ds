@@ -1,4 +1,5 @@
 import socket
+import time
 import pickle
 import sys
 import pygame
@@ -83,6 +84,19 @@ def move_ball(ball):
                 score.score('left')
                 ball.reset()
 
+            if score.left_score >= WINNING_SCORE:
+                score.left_score = 'You WIN!'
+                time.sleep(3)
+                score.reset()
+                ball.reset()
+                # ball.READY = False
+            elif score.right_score >= WINNING_SCORE:
+                score.right_score = 'You WIN!'
+                time.sleep(3)
+                score.reset()
+                ball.reset()
+                # ball.READY = False
+
         except:
             break
 
@@ -97,7 +111,6 @@ while True:
     start_new_thread(threaded_client, (conn, currentPlayer))
     if countPlayer == 2:
         move_ball_id = start_new_thread(move_ball, (ball,))
-        print(move_ball_id)
     currentPlayer += 1
 
 sys.exit(0)

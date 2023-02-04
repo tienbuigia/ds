@@ -6,6 +6,7 @@ from src import color
 class Ball:
     MAX_VEL = 5
     COLOR = color.WHITE
+    # READY = False
 
     def __init__(self, x, y, radius):
         self.x = self.original_x = x
@@ -18,6 +19,7 @@ class Ball:
         pygame.draw.circle(win, self.COLOR, (self.x, self.y), self.radius)
 
     def move(self):
+        # if READY:
         self.x += self.x_vel
         self.y += self.y_vel
 

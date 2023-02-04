@@ -1,9 +1,9 @@
 import pygame
 from . import color
+from src.constant import *
 
 pygame.font.init()
-FONT = pygame.font.SysFont("monospace", 50)
-WIDTH, HEIGHT = 700, 500
+FONT = pygame.font.SysFont('monospace', 50)
 
 
 def handle_collision(ball, left_paddle, right_paddle):
@@ -13,7 +13,10 @@ def handle_collision(ball, left_paddle, right_paddle):
         ball.y_vel *= -1
 
     if ball.x_vel < 0:
-        if ball.y >= left_paddle.y and ball.y <= left_paddle.y + left_paddle.height:
+        if (
+            ball.y >= left_paddle.y
+            and ball.y <= left_paddle.y + left_paddle.height
+        ):
             if ball.x - ball.radius <= left_paddle.x + left_paddle.width:
                 ball.x_vel *= -1
 
@@ -24,7 +27,10 @@ def handle_collision(ball, left_paddle, right_paddle):
                 ball.y_vel = -1 * y_vel
 
     else:
-        if ball.y >= right_paddle.y and ball.y <= right_paddle.y + right_paddle.height:
+        if (
+            ball.y >= right_paddle.y
+            and ball.y <= right_paddle.y + right_paddle.height
+        ):
             if ball.x + ball.radius >= right_paddle.x:
                 ball.x_vel *= -1
 
@@ -36,13 +42,12 @@ def handle_collision(ball, left_paddle, right_paddle):
 
 
 class Score:
-
     def __init__(self):
         self.left_score = 0
         self.right_score = 0
 
     def score(self, player='left'):
-        if player == "left":
+        if player == 'left':
             self.left_score += 1
         else:
             self.right_score += 1
@@ -53,9 +58,13 @@ class Score:
 
     def draw(self, win):
 
-        left_score_text = FONT.render(f"{self.left_score}", 1, color.WHITE)
-        right_score_text = FONT.render(f"{self.right_score}", 1, color.WHITE)
-        win.blit(left_score_text,
-                 (WIDTH // 4 - left_score_text.get_width() // 2, 20))
-        win.blit(right_score_text,
-                 (WIDTH * (3 / 4) - right_score_text.get_width() // 2, 20))
+        left_score_text = FONT.render(f'{self.left_score}', 1, color.WHITE)
+        right_score_text = FONT.render(f'{self.right_score}', 1, color.WHITE)
+        win.blit(
+            left_score_text,
+            (WIDTH // 4 - left_score_text.get_width() // 2, 20),
+        )
+        win.blit(
+            right_score_text,
+            (WIDTH * (3 / 4) - right_score_text.get_width() // 2, 20),
+        )
