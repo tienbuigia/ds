@@ -1,5 +1,5 @@
 import pygame
-import src.constant
+from src.constant import *
 
 from network import Network
 from src import color

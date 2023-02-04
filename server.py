@@ -7,7 +7,7 @@ from src.player import Player
 from src.ball import Ball
 from src import game
 from src.game import Score
-import src.constant
+from src.constant import *
 
 server = 'localhost'
 port = 5555
