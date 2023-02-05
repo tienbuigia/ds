@@ -27,7 +27,7 @@ players = [
     Player(0, HEIGHT / 2 - 50, 20, 100, (0, 255, 0)),
     Player(WIDTH - 20, HEIGHT / 2 - 50, 20, 100, (0, 0, 255)),
 ]
-ball = Ball(WIDTH / 2 - BALL_RADIUS, HEIGHT / 2 - BALL_RADIUS, BALL_RADIUS)
+ball = Ball(WIDTH / 2, HEIGHT / 2, BALL_RADIUS)
 score = Score()
 
 
