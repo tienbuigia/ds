@@ -44,8 +44,10 @@ def main():
     while run:
         clock.tick(FPS)
         player2, ball, score = n.send(player)
-        keys = pygame.key.get_pressed()
+        if score.left_score == "You WIN!" or score.right_score == "You WIN!":
+            player.ready = False
 
+        keys = pygame.key.get_pressed()
         for event in pygame.event.get():
             if event.type == pygame.QUIT or keys[pygame.K_ESCAPE]:
                 run = False
