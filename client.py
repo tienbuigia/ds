@@ -40,13 +40,14 @@ def main():
     n = Network()
     player = n.get_player()
     clock = pygame.time.Clock()
+    keys = pygame.key.get_pressed()
 
     while run:
         clock.tick(FPS)
         player2, ball, score = n.send(player)
 
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT or keys[pygame.K_ESCAPE]:
                 run = False
                 pygame.quit()
 
