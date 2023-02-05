@@ -34,6 +34,7 @@ score = Score()
 def threaded_client(conn, player):
     conn.send(pickle.dumps(players[player]))
     reply = ''
+    # global ready
     while True:
         try:
             data = pickle.loads(conn.recv(4096))
@@ -53,10 +54,13 @@ def threaded_client(conn, player):
                 ball,
                 score,
             )))
+            # print("recieved:", data.ready)
+            # print("sending:", reply.ready)
         except Exception as e:
             print(e)
             break
     print('Lost connection')
+    ball.ready = False
     conn.close()
 
 
@@ -70,8 +74,6 @@ def move_ball(ball):
             ball.move()
 
             game.handle_collision(ball, players[0], players[1])
-            # print("recieved:", data)
-            # print("sending:", reply)
 
             if ball.x < 0:
                 score.score('right')
@@ -85,29 +87,47 @@ def move_ball(ball):
                 time.sleep(3)
                 score.reset()
                 ball.reset()
-                # ball.READY = False
+                # players[0].reset()
+                # players[1].reset()
             elif score.right_score >= WINNING_SCORE:
                 score.right_score = 'You WIN!'
                 time.sleep(3)
                 score.reset()
                 ball.reset()
-                # ball.READY = False
+                # players[0].reset()
+                # players[1].reset()
 
         except Exception as e:
             print(e)
             break
 
 
+def check_ready():
+    # global ready
+    while True:
+        clock.tick(20)
+        if players[0].ready and players[1].ready:
+            ball.ready = True
+        else:
+            ball.ready = False
+
+
 countPlayer = 0
 currentPlayer = 0
 while True:
-    conn, addr = s.accept()
+    try:
+        conn, addr = s.accept()
+    except KeyboardInterrupt:
+        print("exited.")
+
     countPlayer += 1
     print('connected to', addr)
 
     start_new_thread(threaded_client, (conn, currentPlayer))
+
     if countPlayer == 2:
-        move_ball_id = start_new_thread(move_ball, (ball, ))
+        start_new_thread(check_ready, ())
+        start_new_thread(move_ball, (ball, ))
     currentPlayer += 1
 
 sys.exit(0)
