@@ -10,7 +10,7 @@ from src import game
 from src.game import Score
 from src.constant import HEIGHT, WIDTH, BALL_RADIUS, WINNING_SCORE
 
-server = 'localhost'
+server = '0.0.0.0'
 port = 5555
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -117,11 +117,10 @@ currentPlayer = 0
 while True:
     try:
         conn, addr = s.accept()
+        countPlayer += 1
+        print('connected to', addr)
     except KeyboardInterrupt:
         print("exited.")
-
-    countPlayer += 1
-    print('connected to', addr)
 
     start_new_thread(threaded_client, (conn, currentPlayer))
 
