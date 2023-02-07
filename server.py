@@ -53,6 +53,7 @@ def threaded_client(conn, player):
                 reply,
                 ball,
                 score,
+                closing,
             )))
             # print("recieved:", data.ready)
             # print("sending:", reply.ready)

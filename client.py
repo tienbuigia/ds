@@ -43,7 +43,12 @@ def main():
 
     while run:
         clock.tick(FPS)
-        player2, ball, score = n.send(player)
+        player2, ball, score, closing = n.send(player)
+
+        if closing:
+            run = False
+            pygame.quit()
+
         if score.left_score == "You WIN!" or score.right_score == "You WIN!":
             player.ready = False
 
