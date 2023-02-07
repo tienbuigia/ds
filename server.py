@@ -34,7 +34,7 @@ score = Score()
 def threaded_client(conn, player):
     conn.send(pickle.dumps(players[player]))
     reply = ''
-    # global ready
+    global closing
     while True:
         try:
             data = pickle.loads(conn.recv(4096))
@@ -61,7 +61,9 @@ def threaded_client(conn, player):
             break
     print('Lost connection')
     ball.ready = False
+    closing = True
     conn.close()
+    sys.exit(0)
 
 
 clock = pygame.time.Clock()
@@ -103,9 +105,11 @@ def move_ball(ball):
 
 
 def check_ready():
-    # global ready
+    global closing
     while True:
         clock.tick(20)
+        if closing:
+            return
         if players[0].ready and players[1].ready:
             ball.ready = True
         else:
@@ -114,18 +118,19 @@ def check_ready():
 
 countPlayer = 0
 currentPlayer = 0
+closing = False
 while True:
     try:
         conn, addr = s.accept()
         countPlayer += 1
         print('connected to', addr)
+        start_new_thread(threaded_client, (conn, currentPlayer))
     except KeyboardInterrupt:
-        print("exited.")
-
-    start_new_thread(threaded_client, (conn, currentPlayer))
+        print("exit now.")
+        sys.exit(1)
 
     if countPlayer == 2:
-        start_new_thread(check_ready, ())
+        check_thread_id = start_new_thread(check_ready, ())
         start_new_thread(move_ball, (ball, ))
     currentPlayer += 1
 
