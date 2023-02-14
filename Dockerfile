@@ -7,5 +7,5 @@ RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
 RUN pip install -r requirements.txt
-CMD ["python"]
+CMD ["python", "server.py"]
 EXPOSE 5555
